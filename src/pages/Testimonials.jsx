@@ -1,6 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Container, Row, Col, Card, Button, Modal, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
+// Counter component for animated numbers
+const CounterNumber = ({ end, duration = 2000, suffix = "", prefix = "" }) => {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const counterRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (counterRef.current) {
+      observer.observe(counterRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let startTime;
+    const startValue = 0;
+    const endValue = end;
+
+    const animate = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      
+      setCount(Math.floor(progress * (endValue - startValue) + startValue));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isVisible, end, duration]);
+
+  return (
+    <h3 className="display-4 fw-bold text-dark" ref={counterRef}>
+      {prefix}{count}{suffix}
+    </h3>
+  );
+};
 
 const Testimonials = () => {
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
@@ -112,10 +163,10 @@ const Testimonials = () => {
   ];
 
   const stats = [
-    { number: '98%', label: 'Customer Satisfaction' },
-    { number: '150+', label: 'Happy Clients' },
-    { number: '4.9', label: 'Average Rating' },
-    { number: '100%', label: 'Projects Completed' }
+    { number: 98, suffix: '%', label: 'Customer Satisfaction' },
+    { number: 150, suffix: '+', label: 'Happy Clients' },
+    { number: 49, suffix: '', prefix: '4.', label: 'Average Rating' },
+    { number: 100, suffix: '%', label: 'Projects Completed' }
   ];
 
   const handleShowTestimonial = (testimonial) => {
@@ -144,8 +195,8 @@ const Testimonials = () => {
         <Container>
           <Row className="align-items-center h-100">
             <Col lg={8} className="mx-auto text-center text-white">
-              <h1 className="display-4 fw-bold mb-4">Client Testimonials</h1>
-              <p className="lead">
+              <h1 className="display-4 fw-bold mb-4 text-white">Client Testimonials</h1>
+              <p className="lead text-white">
                 Don't just take our word for it. Here's what our satisfied clients say about 
                 our renovation and repair services.
               </p>
@@ -161,7 +212,11 @@ const Testimonials = () => {
             {stats.map((stat, index) => (
               <Col lg={3} md={6} className="mb-4" key={index}>
                 <div className="stat-card">
-                  <h3 className="display-4 fw-bold text-dark">{stat.number}</h3>
+                  <CounterNumber 
+                    end={stat.number} 
+                    suffix={stat.suffix || ''} 
+                    prefix={stat.prefix || ''} 
+                  />
                   <p className="text-muted">{stat.label}</p>
                 </div>
               </Col>

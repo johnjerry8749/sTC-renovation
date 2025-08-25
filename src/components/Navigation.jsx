@@ -4,6 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,16 +16,22 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = () => {
+    setExpanded(false);
+  };
+
   return (
     <Navbar 
       expand="lg" 
+      expanded={expanded}
+      onToggle={setExpanded}
       className={`navbar-custom fixed-top ${scrolled ? 'scrolled' : ''}`}
     >
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand className="fw-bold">
             <i className="bi bi-house-heart me-2"></i>
-            RenovationPro
+            S.T.C Limited
           </Navbar.Brand>
         </LinkContainer>
         
@@ -33,22 +40,22 @@ const Navigation = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <LinkContainer to="/">
-              <Nav.Link className="interactive-element">Home</Nav.Link>
+              <Nav.Link className="interactive-element" onClick={handleNavClick}>Home</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/about">
-              <Nav.Link className="interactive-element">About</Nav.Link>
+              <Nav.Link className="interactive-element" onClick={handleNavClick}>About</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/services">
-              <Nav.Link className="interactive-element">Services</Nav.Link>
+              <Nav.Link className="interactive-element" onClick={handleNavClick}>Services</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/projects">
-              <Nav.Link className="interactive-element">Projects</Nav.Link>
+              <Nav.Link className="interactive-element" onClick={handleNavClick}>Projects</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/testimonials">
-              <Nav.Link className="interactive-element">Reviews</Nav.Link>
+              <Nav.Link className="interactive-element" onClick={handleNavClick}>Reviews</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/contact">
-              <Nav.Link className="btn btn-outline-light ms-2 px-3 interactive-element">
+              <Nav.Link className="btn btn-outline-light ms-2 px-3 interactive-element" onClick={handleNavClick}>
                 Contact Now
               </Nav.Link>
             </LinkContainer>

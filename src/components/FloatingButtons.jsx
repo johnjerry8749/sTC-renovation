@@ -4,7 +4,7 @@ const FloatingButtons = () => {
   return (
     <div className="floating-buttons">
       <a 
-        href="https://wa.me/15551234567" 
+        href="https://wa.me/5488893365" 
         className="floating-btn whatsapp-btn" 
         title="WhatsApp"
         target="_blank"
@@ -13,7 +13,7 @@ const FloatingButtons = () => {
         <i className="bi bi-whatsapp"></i>
       </a>
       <a 
-        href="tel:+15551234567" 
+        href="tel:+5488893365" 
         className="floating-btn phone-btn" 
         title="Call Now"
       >

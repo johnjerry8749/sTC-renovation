@@ -93,6 +93,51 @@ const Services = () => {
       ],
       price: 'Custom Quote',
       image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=300&fit=crop'
+    },
+    {
+      icon: 'bi-flower1',
+      title: 'All Kinds Of Gardening',
+      description: 'Complete garden design and maintenance services to create and maintain beautiful outdoor spaces throughout all seasons.',
+      features: [
+        'Garden Design & Planning',
+        'Seasonal Planting',
+        'Lawn Care & Maintenance',
+        'Tree & Shrub Pruning',
+        'Landscape Installation',
+        'Garden Cleanup Services'
+      ],
+      price: 'Starting from $200',
+      image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop'
+    },
+    {
+      icon: 'bi-house-heart',
+      title: 'Home Care And Cleaning',
+      description: 'Professional home care and deep cleaning services to keep your living space healthy, organized, and sparkling clean.',
+      features: [
+        'Deep House Cleaning',
+        'Regular Maintenance',
+        'Move-in/Move-out Cleaning',
+        'Post-Construction Cleanup',
+        'Window & Carpet Cleaning',
+        'Sanitization Services'
+      ],
+      price: 'Starting from $100',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop'
+    },
+    {
+      icon: 'bi-calendar-check',
+      title: 'Monthly Routine Care And Cleaning',
+      description: 'Scheduled monthly maintenance and cleaning programs to keep your property in perfect condition year-round.',
+      features: [
+        'Monthly Deep Cleaning',
+        'Preventive Maintenance',
+        'HVAC Filter Replacement',
+        'Gutter Cleaning',
+        'Seasonal Inspections',
+        'Priority Service Booking'
+      ],
+      price: 'Starting from $250/month',
+      image: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=400&h=300&fit=crop'
     }
   ];
 
@@ -136,8 +181,8 @@ const Services = () => {
         <Container>
           <Row className="align-items-center h-100">
             <Col lg={8} className="mx-auto text-center text-white">
-              <h1 className="display-4 fw-bold mb-4">Our Services</h1>
-              <p className="lead">
+              <h1 className="display-4 fw-bold mb-4 text-white">Our Services</h1>
+              <p className="lead text-white">
                 Professional renovation and construction services tailored to your specific needs. 
                 From complete renovations to specialized repairs, we've got you covered.
               </p>
@@ -185,15 +230,6 @@ const Services = () => {
                     </ul>
                     
                     <div className="mt-auto">
-                      <div className="d-flex justify-content-between align-items-center mb-3">
-                        <div className="star-rating">
-                          <i className="bi bi-star-fill text-warning"></i>
-                          <i className="bi bi-star-fill text-warning"></i>
-                          <i className="bi bi-star-fill text-warning"></i>
-                          <i className="bi bi-star-fill text-warning"></i>
-                          <i className="bi bi-star-fill text-warning"></i>
-                        </div>
-                      </div>
                       <Link to="/contact" className="btn btn-primary w-100">
                         Get Quote <i className="bi bi-arrow-right ms-2"></i>
                       </Link>

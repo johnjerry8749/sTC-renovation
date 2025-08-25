@@ -9,7 +9,7 @@ const Footer = () => {
           <Col lg={4} md={6} className="mb-4">
             <h5>
               <i className="bi bi-house-heart me-2"></i>
-              RenovationPro
+              S.T.C Limited
             </h5>
             <p className="mb-3">
               Your trusted partner for all renovation, repair, painting, whitewashing, 
@@ -60,15 +60,15 @@ const Footer = () => {
             <div className="contact-details">
               <div className="mb-2">
                 <i className="bi bi-envelope me-2"></i>
-                <a href="mailto:info@renovationpro.com">info@renovationpro.com</a>
+                <a href="mailto:info@stclimited.com">info@stclimited.com</a>
               </div>
               <div className="mb-2">
                 <i className="bi bi-telephone me-2"></i>
-                <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                <a href="tel:+5488893365">054 888 93365</a>
               </div>
               <div className="mb-2">
                 <i className="bi bi-whatsapp me-2"></i>
-                <a href="https://wa.me/15551234567">WhatsApp Chat</a>
+                <a href="https://wa.me/5488893365">WhatsApp Chat</a>
               </div>
               <div className="mb-2">
                 <i className="bi bi-geo-alt me-2"></i>
@@ -86,15 +86,15 @@ const Footer = () => {
         
         <Row className="align-items-center">
           <Col md={6}>
-            <p className="mb-0 text-muted">
-              © 2025 RenovationPro. All rights reserved.
+            <p className="mb-0 text-white">
+              © 2025 S.T.C Limited. All rights reserved.
             </p>
           </Col>
           <Col md={6} className="text-md-end">
             <div className="d-flex gap-3 justify-content-md-end justify-content-start mt-3 mt-md-0">
-              <a href="#" className="text-muted text-decoration-none">Privacy Policy</a>
-              <a href="#" className="text-muted text-decoration-none">Terms of Service</a>
-              <a href="#" className="text-muted text-decoration-none">Sitemap</a>
+              <a href="#" className="text-white text-decoration-none footer-bottom-link">Privacy Policy</a>
+              <a href="#" className="text-white text-decoration-none footer-bottom-link">Terms of Service</a>
+              <a href="#" className="text-white text-decoration-none footer-bottom-link">Sitemap</a>
             </div>
           </Col>
         </Row>

@@ -574,10 +574,10 @@ p, span, div {
               url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&h=1080&fit=crop&q=80') center/cover no-repeat;
 }
 
-/* About Page - Elegant Office Interior */
+/* About Page - Beautiful Garden & Landscaping */
 .hero-about {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), 
-              url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop&q=80') center/cover no-repeat;
+              url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1920&h=1080&fit=crop&q=80') center/cover no-repeat;
 }
 
 /* Services Page - Modern Kitchen */
@@ -1027,8 +1027,12 @@ p, span, div {
   margin-bottom: 1.5rem;
 }
 
+.footer p {
+  color: white;
+}
+
 .footer .list-unstyled a {
-  color: #adb5bd;
+  color: white;
   text-decoration: none;
   transition: var(--transition);
   display: block;
@@ -1038,6 +1042,28 @@ p, span, div {
 .footer .list-unstyled a:hover {
   color: #28a745;
   padding-left: 0.5rem;
+}
+
+.footer .contact-details {
+  color: white;
+}
+
+.footer .contact-details a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer .contact-details a:hover {
+  color: #28a745;
+}
+
+.footer .contact-details span {
+  color: white;
+}
+
+.footer-bottom-link:hover {
+  color: #28a745 !important;
+  transition: var(--transition);
 }
 
 .social-links {
@@ -1095,11 +1121,11 @@ p, span, div {
 }
 
 .whatsapp-btn {
-  background: #25d366;
+  background: #000000;
 }
 
 .phone-btn {
-  background: linear-gradient(135deg, #000000 0%, #333333 100%);
+  background: #000000;
 }
 
 /* ===== ANIMATIONS ===== */
@@ -1749,6 +1775,167 @@ p, span, div {
   margin: 0 auto;
 }
 
+/* Center-Focused Gallery */
+.center-gallery .main-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.center-gallery .main-gallery-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.center-gallery .main-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.center-gallery .main-image-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.center-gallery .side-thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.center-gallery .thumbnail-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.center-gallery .thumbnail-card.active {
+  opacity: 1;
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.center-gallery .thumbnail-image {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Mobile Gallery */
+.center-gallery .mobile-gallery {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.center-gallery .mobile-gallery-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.5s ease;
+}
+
+.center-gallery .mobile-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.center-gallery .mobile-image-title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.center-gallery .mobile-dots {
+  text-align: center;
+}
+
+.center-gallery .mobile-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.5);
+  margin: 0 4px;
+  transition: background-color 0.3s ease;
+}
+
+.center-gallery .mobile-dot.active {
+  background-color: white;
+}
+
+/* Projects Gallery Row - Legacy styles */
+.projects-gallery .project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.projects-gallery .project-card:hover {
+  transform: translateY(-5px);
+}
+
+.projects-gallery .project-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.projects-gallery .project-card:hover .project-image {
+  transform: scale(1.05);
+}
+
+.projects-gallery .project-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
+  padding: 15px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.projects-gallery .project-card:hover .project-overlay {
+  transform: translateY(0);
+}
+
+.projects-gallery .project-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .gallery-container {
   position: relative;
   width: 100%;
@@ -1757,59 +1944,61 @@ p, span, div {
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .gallery-wrapper {
   width: 100%;
   height: 400px;
   overflow: hidden;
+  position: relative;
 }
 
 .gallery-slides {
   display: flex;
-  width: 400%;
   height: 100%;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
 }
 
 .gallery-slide {
   position: relative;
-  width: 25%;
+  flex: 0 0 100%;
   height: 100%;
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--medium-green) 100%);
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
 }
 
 .gallery-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   display: block;
   background: var(--light-gray);
   min-height: 400px;
   border: none;
-}
-
-/* Loading state for images */
-.gallery-slide {
-  background: linear-gradient(135deg, var(--primary-green) 0%, var(--medium-green) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.gallery-slide::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, var(--primary-green) 0%, var(--medium-green) 100%);
-  z-index: 1;
-}
-
-.gallery-image {
   position: relative;
   z-index: 2;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  filter: none;
+  transition: none;
 }
 
 .gallery-overlay {
@@ -2169,11 +2358,11 @@ p, span, div {
 }
 
 .whatsapp-btn {
-  background: #25d366;
+  background: #000000;
 }
 
 .phone-btn {
-  background: var(--primary-color);
+  background: #000000;
 }
 
 .floating-btn:hover {
@@ -2570,4 +2759,167 @@ p, span, a, div,
 /* Override any animation delays */
 * {
   animation-delay: 0s !important;
+}
+
+/* Hover Text Overlay Styles */
+.hover-text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  border-radius: 15px;
+}
+
+.main-image-container:hover .hover-text-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hover-text-overlay h5 {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+}
+
+.hover-text-overlay p {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 400px;
+}
+
+.feature-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.feature-badges .badge {
+  background: #28a745;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Mobile Hover Text */
+.mobile-hover-text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  border-radius: 15px;
+}
+
+.mobile-gallery:active .mobile-hover-text-overlay,
+.mobile-gallery:focus .mobile-hover-text-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-hover-text-overlay h6 {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+}
+
+.mobile-hover-text-overlay p {
+  color: white;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Thumbnail Hover Text */
+.thumbnail-hover-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  border-radius: 10px;
+}
+
+.thumbnail-card:hover .thumbnail-hover-text {
+  opacity: 1;
+  visibility: visible;
+}
+
+.thumbnail-hover-text h6 {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  font-size: 0.8rem;
+}
+
+.thumbnail-hover-text p {
+  color: white;
+  margin: 0;
+  font-size: 0.7rem;
+  line-height: 1.2;
+}
+
+/* Make thumbnail cards relative for positioning */
+.thumbnail-card {
+  position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hover-text-overlay {
+    padding: 1rem;
+  }
+  
+  .hover-text-overlay h5 {
+    font-size: 1.1rem;
+  }
+  
+  .hover-text-overlay p {
+    font-size: 0.9rem;
+  }
+  
+  .feature-badges .badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
 }

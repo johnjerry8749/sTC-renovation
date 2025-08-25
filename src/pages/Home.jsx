@@ -3,47 +3,39 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const galleryImages = [
     {
-      src: "https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
-      fallback: "https://via.placeholder.com/800x500/28a745/ffffff?text=Modern+Kitchen+Renovation",
-      alt: "Modern Kitchen Renovation",
-      title: "Modern Kitchen Renovation"
+      src: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&h=800&fit=crop&q=95",
+      fallback: "https://via.placeholder.com/1200x800/28a745/ffffff?text=Professional+Tile+Installation",
+      alt: "Professional Man Installing Ceramic Tiles",
+      title: "Professional Tile Installation"
     },
     {
-      src: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
-      fallback: "https://via.placeholder.com/800x500/20c997/ffffff?text=Living+Room+Interior+Design",
-      alt: "Living Room Interior Design",
-      title: "Living Room Interior Design"
+      src: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1200&h=800&fit=crop&q=95",
+      fallback: "https://via.placeholder.com/1200x800/20c997/ffffff?text=Expert+Wall+Painting",
+      alt: "Expert Man Painting Interior Walls",
+      title: "Expert Wall Painting Services"
     },
     {
-      src: "https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
-      fallback: "https://via.placeholder.com/800x500/5cb85c/ffffff?text=Bedroom+Interior+Design",
-      alt: "Bedroom Interior Design",
-      title: "Bedroom Interior Design"
+      src: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&h=800&fit=crop&q=95",
+      fallback: "https://via.placeholder.com/1200x800/5cb85c/ffffff?text=Professional+House+Cleaning",
+      alt: "Professional Man Cleaning Services",
+      title: "Professional House Cleaning"
     },
     {
-      src: "https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
-      fallback: "https://via.placeholder.com/800x500/155724/ffffff?text=Complete+Home+Renovation",
-      alt: "Complete Home Renovation",
-      title: "Complete Home Renovation"
+      src: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=1200&h=800&fit=crop&q=95",
+      fallback: "https://via.placeholder.com/1200x800/6c757d/ffffff?text=Deep+Cleaning+Services",
+      alt: "Man Providing Deep Cleaning Services",
+      title: "Deep Cleaning Services"
     }
   ];
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
-  };
-
-  // Auto-slide every 4 seconds
+  // Auto-swap images every 4 seconds
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
+      setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
     }, 4000);
     return () => clearInterval(timer);
   }, [galleryImages.length]);
@@ -68,14 +60,15 @@ const Home = () => {
               </h1>
               <p className="hero-subtitle">
                 Quality and durability for a comfortable life. We specialize in complete renovations, 
-                professional repairs, premium painting, whitewashing, and expert ceramic & tile work.
+                professional repairs, premium painting, whitewashing, expert ceramic & tile work, 
+                and all kinds of gardening, home care and cleaning, plus monthly routine care and cleaning services.
               </p>
-              <div className="hero-buttons">
-                <Link to="/contact" className="btn btn-light btn-lg me-3 hover-lift pulse-on-hover">
+              <div className="hero-buttons mt-4">
+                <Link to="/contact" className="btn btn-light btn-lg me-4 mb-3 hover-lift pulse-on-hover">
                   <i className="bi bi-telephone me-2"></i>
                   Get Free Quote
                 </Link>
-                <Link to="/services" className="btn btn-outline-light btn-lg hover-lift">
+                <Link to="/services" className="btn btn-outline-light btn-lg mb-3 hover-lift">
                   <i className="bi bi-arrow-right me-2"></i>
                   Our Services
                 </Link>
@@ -167,6 +160,53 @@ const Home = () => {
               </div>
             </Col>
           </Row>
+          <Row>
+            <Col lg={4} md={6} className="mb-4">
+              <div className="service-card hover-lift">
+                <div className="service-icon">
+                  <i className="bi bi-flower1"></i>
+                </div>
+                <h4 className="service-title">All Kinds Of Gardening</h4>
+                <p className="service-description">
+                  Complete gardening services including landscape design, plant care, 
+                  lawn maintenance, and seasonal garden preparation for beautiful outdoor spaces.
+                </p>
+                <Link to="/services" className="btn btn-outline-primary hover-lift">
+                  Learn More <i className="bi bi-arrow-right ms-2"></i>
+                </Link>
+              </div>
+            </Col>
+            <Col lg={4} md={6} className="mb-4">
+              <div className="service-card hover-lift">
+                <div className="service-icon">
+                  <i className="bi bi-house-heart"></i>
+                </div>
+                <h4 className="service-title">Home Care And Cleaning</h4>
+                <p className="service-description">
+                  Professional home care and deep cleaning services to maintain a 
+                  healthy and spotless living environment for you and your family.
+                </p>
+                <Link to="/services" className="btn btn-outline-primary hover-lift">
+                  Learn More <i className="bi bi-arrow-right ms-2"></i>
+                </Link>
+              </div>
+            </Col>
+            <Col lg={4} md={6} className="mb-4">
+              <div className="service-card hover-lift">
+                <div className="service-icon">
+                  <i className="bi bi-calendar-check"></i>
+                </div>
+                <h4 className="service-title">Monthly Routine Care And Cleaning</h4>
+                <p className="service-description">
+                  Regular monthly maintenance and cleaning packages to keep your home 
+                  in perfect condition year-round with scheduled professional care.
+                </p>
+                <Link to="/services" className="btn btn-outline-primary hover-lift">
+                  Learn More <i className="bi bi-arrow-right ms-2"></i>
+                </Link>
+              </div>
+            </Col>
+          </Row>
         </Container>
       </section>
 
@@ -180,62 +220,203 @@ const Home = () => {
                 Get in touch with us today for a free consultation and quote
               </p>
               
-              {/* Sliding Thumbnail Gallery */}
-              <div className="sliding-gallery mb-4">
-                <div className="gallery-container">
-                  <div className="gallery-wrapper">
-                    <div 
-                      className="gallery-slides"
-                      style={{
-                        transform: `translateX(-${currentSlide * 100}%)`,
-                        transition: 'transform 0.5s ease-in-out'
-                      }}
-                    >
-                      {galleryImages.map((image, index) => (
-                        <div key={index} className="gallery-slide">
-                          <img 
-                            src={image.src}
-                            alt={image.alt}
-                            className="gallery-image"
-                            onError={(e) => {
-                              e.target.src = image.fallback;
-                            }}
-                            loading="lazy"
-                          />
-                          <div className="gallery-overlay">
-                            <h5 className="gallery-title">{image.title}</h5>
+              {/* Center-Focused Project Gallery */}
+              <div className="center-gallery mb-4">
+                {/* Desktop: Main center image with side thumbnails */}
+                <div className="d-none d-lg-block">
+                  <Row className="align-items-center">
+                    <Col lg={2} className="text-end">
+                      <div className="side-thumbnails">
+                        {galleryImages.map((image, index) => (
+                          <div 
+                            key={`left-${index}`}
+                            className={`thumbnail-card mb-2 ${index === (currentImageIndex - 1 + galleryImages.length) % galleryImages.length ? 'active' : ''}`}
+                          >
+                            <img 
+                              src={image.src}
+                              alt={image.alt}
+                              className="thumbnail-image"
+                              onError={(e) => {
+                                e.target.src = image.fallback;
+                              }}
+                            />
                           </div>
+                        ))}
+                      </div>
+                    </Col>
+                    <Col lg={8}>
+                      <div className="main-image-container">
+                        <img 
+                          src={galleryImages[currentImageIndex].src}
+                          alt={galleryImages[currentImageIndex].alt}
+                          className="main-gallery-image img-fluid rounded shadow-lg"
+                          onError={(e) => {
+                            e.target.src = galleryImages[currentImageIndex].fallback;
+                          }}
+                        />
+                        <div className="main-image-overlay">
+                          <h4 className="main-image-title">{galleryImages[currentImageIndex].title}</h4>
                         </div>
+                        <div className="hover-text-overlay">
+                          {galleryImages[currentImageIndex].type === 'tile' && (
+                            <>
+                              <h5>Professional Tile Installation</h5>
+                              <p>Expert ceramic and porcelain tile installation for bathrooms, kitchens, and floors. Precision cutting, leveling, and grouting with attention to detail.</p>
+                              <div className="feature-badges">
+                                <span className="badge">✓ Professional</span>
+                                <span className="badge">✓ Quality Guaranteed</span>
+                                <span className="badge">✓ Experienced Team</span>
+                              </div>
+                            </>
+                          )}
+                          {galleryImages[currentImageIndex].type === 'painting' && (
+                            <>
+                              <h5>Expert Wall Painting Services</h5>
+                              <p>Premium interior and exterior painting using high-quality paints and professional techniques. Surface preparation, priming, and flawless finish application.</p>
+                              <div className="feature-badges">
+                                <span className="badge">✓ Professional</span>
+                                <span className="badge">✓ Quality Materials</span>
+                                <span className="badge">✓ Clean Finish</span>
+                              </div>
+                            </>
+                          )}
+                          {galleryImages[currentImageIndex].type === 'cleaning' && (
+                            <>
+                              <h5>Professional House Cleaning</h5>
+                              <p>Comprehensive residential cleaning services including dusting, vacuuming, mopping, and sanitizing. Regular maintenance and deep cleaning options available.</p>
+                              <div className="feature-badges">
+                                <span className="badge">✓ Eco-Friendly</span>
+                                <span className="badge">✓ Reliable Service</span>
+                                <span className="badge">✓ Experienced Staff</span>
+                              </div>
+                            </>
+                          )}
+                          {galleryImages[currentImageIndex].type === 'deep-cleaning' && (
+                            <>
+                              <h5>Deep Cleaning Services</h5>
+                              <p>Thorough deep cleaning for move-in/out, post-construction, and seasonal cleaning. Every corner, appliance, and surface cleaned to perfection.</p>
+                              <div className="feature-badges">
+                                <span className="badge">✓ Thorough</span>
+                                <span className="badge">✓ Detail-Oriented</span>
+                                <span className="badge">✓ Satisfaction Guaranteed</span>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </Col>
+                    <Col lg={2}>
+                      <div className="side-thumbnails">
+                        {galleryImages.map((image, index) => (
+                          <div 
+                            key={`right-${index}`}
+                            className={`thumbnail-card mb-2 ${index === (currentImageIndex + 1) % galleryImages.length ? 'active' : ''}`}
+                          >
+                            <img 
+                              src={image.src}
+                              alt={image.alt}
+                              className="thumbnail-image"
+                              onError={(e) => {
+                                e.target.src = image.fallback;
+                              }}
+                            />
+                            <div className="thumbnail-hover-text">
+                              {image.type === 'tile' && (
+                                <>
+                                  <h6>Tile Installation</h6>
+                                  <p>Professional ceramic & porcelain tile work</p>
+                                </>
+                              )}
+                              {image.type === 'painting' && (
+                                <>
+                                  <h6>Wall Painting</h6>
+                                  <p>Interior & exterior painting services</p>
+                                </>
+                              )}
+                              {image.type === 'cleaning' && (
+                                <>
+                                  <h6>House Cleaning</h6>
+                                  <p>Regular residential cleaning services</p>
+                                </>
+                              )}
+                              {image.type === 'deep-cleaning' && (
+                                <>
+                                  <h6>Deep Cleaning</h6>
+                                  <p>Thorough move-in/out cleaning</p>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </Col>
+                  </Row>
+                </div>
+
+                {/* Mobile: Single shuffling image */}
+                <div className="d-lg-none">
+                  <div className="mobile-gallery">
+                    <img 
+                      src={galleryImages[currentImageIndex].src}
+                      alt={galleryImages[currentImageIndex].alt}
+                      className="mobile-gallery-image img-fluid rounded shadow"
+                      onError={(e) => {
+                        e.target.src = galleryImages[currentImageIndex].fallback;
+                      }}
+                    />
+                    <div className="mobile-image-overlay">
+                      <h5 className="mobile-image-title">{galleryImages[currentImageIndex].title}</h5>
+                    </div>
+                    <div className="mobile-hover-text-overlay">
+                      {galleryImages[currentImageIndex].type === 'tile' && (
+                        <>
+                          <h6>Professional Tile Installation</h6>
+                          <p>Expert ceramic and porcelain tile installation for all surfaces with precision and quality craftsmanship.</p>
+                          <div className="feature-badges">
+                            <span className="badge">Professional</span>
+                            <span className="badge">Quality Guaranteed</span>
+                          </div>
+                        </>
+                      )}
+                      {galleryImages[currentImageIndex].type === 'painting' && (
+                        <>
+                          <h6>Expert Wall Painting</h6>
+                          <p>Professional interior and exterior painting services using premium paints and expert application techniques.</p>
+                          <div className="feature-badges">
+                            <span className="badge">Professional</span>
+                            <span className="badge">Quality Materials</span>
+                          </div>
+                        </>
+                      )}
+                      {galleryImages[currentImageIndex].type === 'cleaning' && (
+                        <>
+                          <h6>Professional House Cleaning</h6>
+                          <p>Comprehensive residential cleaning services with eco-friendly products and experienced cleaning staff.</p>
+                          <div className="feature-badges">
+                            <span className="badge">Eco-Friendly</span>
+                            <span className="badge">Experienced Team</span>
+                          </div>
+                        </>
+                      )}
+                      {galleryImages[currentImageIndex].type === 'deep-cleaning' && (
+                        <>
+                          <h6>Deep Cleaning Services</h6>
+                          <p>Thorough deep cleaning for move-in/out and post-construction with attention to every detail.</p>
+                          <div className="feature-badges">
+                            <span className="badge">Thorough</span>
+                            <span className="badge">Detail-Oriented</span>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                    <div className="mobile-dots mt-3">
+                      {galleryImages.map((_, index) => (
+                        <span 
+                          key={index}
+                          className={`mobile-dot ${index === currentImageIndex ? 'active' : ''}`}
+                        ></span>
                       ))}
                     </div>
-                  </div>
-                  
-                  {/* Navigation buttons */}
-                  <button 
-                    className="gallery-nav gallery-nav-prev" 
-                    onClick={prevSlide}
-                    aria-label="Previous image"
-                  >
-                    <i className="bi bi-chevron-left"></i>
-                  </button>
-                  <button 
-                    className="gallery-nav gallery-nav-next" 
-                    onClick={nextSlide}
-                    aria-label="Next image"
-                  >
-                    <i className="bi bi-chevron-right"></i>
-                  </button>
-                  
-                  {/* Dots indicator */}
-                  <div className="gallery-dots">
-                    {galleryImages.map((_, index) => (
-                      <button
-                        key={index}
-                        className={`gallery-dot ${index === currentSlide ? 'active' : ''}`}
-                        onClick={() => setCurrentSlide(index)}
-                        aria-label={`Go to slide ${index + 1}`}
-                      />
-                    ))}
                   </div>
                 </div>
               </div>
@@ -342,8 +523,12 @@ const Home = () => {
                   Get In Touch
                 </Link>
                 <p className="mt-3 text-muted">
+                  <i className="bi bi-whatsapp me-2"></i>
+                  WhatsApp: +971 05488893365
+                </p>
+                <p className="text-muted">
                   <i className="bi bi-telephone me-2"></i>
-                  Call Us: +971 XX XXX XXXX
+                  Call Us: +971 05488893365
                 </p>
               </div>
             </Col>

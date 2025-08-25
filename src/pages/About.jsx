@@ -1,6 +1,57 @@
-import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import React, { useState, useEffect, useRef } from 'react';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
+// Counter component for animated numbers
+const CounterNumber = ({ end, duration = 2000, suffix = "" }) => {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const counterRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (counterRef.current) {
+      observer.observe(counterRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let startTime;
+    const startValue = 0;
+    const endValue = end;
+
+    const animate = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      
+      setCount(Math.floor(progress * (endValue - startValue) + startValue));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isVisible, end, duration]);
+
+  return (
+    <h2 className="stat-number" ref={counterRef}>
+      {count}{suffix}
+    </h2>
+  );
+};
 
 const About = () => {
   const teamMembers = [
@@ -64,8 +115,8 @@ const About = () => {
         <Container>
           <Row>
             <Col lg={12} className="text-center">
-              <h1 className="page-title">About Us</h1>
-              <p className="page-subtitle">
+              <h1 className="page-title text-white">About Us</h1>
+              <p className="page-subtitle text-white">
                 Learn more about our company, values, and the team behind your project
               </p>
             </Col>
@@ -74,7 +125,7 @@ const About = () => {
       </section>
 
       {/* About Content */}
-      <section className="section-padding">
+      <section className="section-padding section-light">
         <Container>
           <Row className="align-items-center">
             <Col lg={6} className="mb-5 mb-lg-0">
@@ -107,10 +158,47 @@ const About = () => {
               </div>
             </Col>
             <Col lg={6}>
-              <div className="about-image text-center">
-                <div className="image-placeholder">
-                  <i className="bi bi-building display-1 text-muted"></i>
-                  <p className="mt-3 text-muted">Our Workshop</p>
+              <div className="about-video text-center">
+                <div className="video-container position-relative">
+                  <video 
+                    className="img-fluid rounded shadow-lg"
+                    style={{maxHeight: '400px', width: '100%', objectFit: 'cover'}}
+                    controls
+                    poster="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=600&h=400&fit=crop&q=80"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextElementSibling.style.display = 'block';
+                    }}
+                  >
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+                    <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4" type="video/mp4" />
+                    <source src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div className="video-placeholder text-center" style={{display: 'none'}}>
+                    <div className="p-4 bg-light rounded shadow-lg">
+                      <i className="bi bi-tools display-1 text-primary mb-3"></i>
+                      <h5 className="text-dark">Our Workshop in Action</h5>
+                      <p className="text-muted">
+                        Experience our comprehensive services: Professional painting & whitewashing, 
+                        expert tile work, beautiful gardening, reliable home care, and thorough cleaning services.
+                      </p>
+                      <div className="services-highlights mt-3">
+                        <div className="row text-start">
+                          <div className="col-6">
+                            <small className="text-primary">🎨 Painting & Whitewashing</small><br/>
+                            <small className="text-primary">🏠 Tile & Ceramic Work</small><br/>
+                            <small className="text-primary">🌿 Gardening Services</small>
+                          </div>
+                          <div className="col-6">
+                            <small className="text-primary">🧹 Home Care Services</small><br/>
+                            <small className="text-primary">✨ Cleaning Services</small><br/>
+                            <small className="text-primary">🔧 General Repairs</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </Col>
@@ -119,7 +207,7 @@ const About = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="section-padding bg-light">
+      <section className="section-padding section-light">
         <Container>
           <Row>
             <Col lg={6} className="mb-4">
@@ -153,7 +241,7 @@ const About = () => {
       </section>
 
       {/* Our Values */}
-      <section className="section-padding">
+      <section className="section-padding section-light">
         <Container>
           <Row>
             <Col lg={12} className="text-center mb-5">
@@ -180,7 +268,7 @@ const About = () => {
       </section>
 
       {/* Team Section */}
-      <section className="section-padding bg-light">
+      <section className="section-padding section-light">
         <Container>
           <Row>
             <Col lg={12} className="text-center mb-5">
@@ -215,24 +303,24 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="section-padding bg-primary text-white">
+      <section className="section-padding section-light">
         <Container>
           <Row>
             <Col lg={3} md={6} className="mb-4 text-center">
               <div className="stat-item">
-                <h2 className="stat-number">500+</h2>
+                <CounterNumber end={500} suffix="+" />
                 <p className="stat-label">Projects Completed</p>
               </div>
             </Col>
             <Col lg={3} md={6} className="mb-4 text-center">
               <div className="stat-item">
-                <h2 className="stat-number">150+</h2>
+                <CounterNumber end={150} suffix="+" />
                 <p className="stat-label">Happy Clients</p>
               </div>
             </Col>
             <Col lg={3} md={6} className="mb-4 text-center">
               <div className="stat-item">
-                <h2 className="stat-number">10+</h2>
+                <CounterNumber end={10} suffix="+" />
                 <p className="stat-label">Years in Business</p>
               </div>
             </Col>
@@ -247,7 +335,7 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="cta-section">
+      <section className="section-padding section-light">
         <Container>
           <Row>
             <Col lg={12} className="text-center">
@@ -256,11 +344,11 @@ const About = () => {
                 Let's discuss your project and bring your vision to life
               </p>
               <div className="cta-buttons">
-                <Link to="/contact" className="btn btn-light btn-lg me-3">
+                <Link to="/contact" className="btn btn-primary btn-lg me-3">
                   <i className="bi bi-envelope me-2"></i>
                   Get In Touch
                 </Link>
-                <Link to="/projects" className="btn btn-outline-light btn-lg">
+                <Link to="/projects" className="btn btn-outline-primary btn-lg">
                   <i className="bi bi-images me-2"></i>
                   View Our Work
                 </Link>

@@ -1,10 +1,59 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Card, Button, Modal, Badge } from 'react-bootstrap';
+import React, { useState, useEffect, useRef } from 'react';
+import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+// Counter component for animated numbers
+const CounterNumber = ({ end, duration = 2000, suffix = "", prefix = "" }) => {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const counterRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (counterRef.current) {
+      observer.observe(counterRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let startTime;
+    const startValue = 0;
+    const endValue = end;
+
+    const animate = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      
+      setCount(Math.floor(progress * (endValue - startValue) + startValue));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [isVisible, end, duration]);
+
+  return (
+    <h3 className="display-4 fw-bold text-dark" ref={counterRef}>
+      {prefix}{count}{suffix}
+    </h3>
+  );
+};
+
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [showModal, setShowModal] = useState(false);
   const [filterCategory, setFilterCategory] = useState('all');
 
   const projects = [
@@ -148,16 +197,6 @@ const Projects = () => {
     ? projects 
     : projects.filter(project => project.category === filterCategory);
 
-  const handleShowProject = (project) => {
-    setSelectedProject(project);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedProject(null);
-  };
-
   return (
     <>
       {/* Hero Section */}
@@ -165,8 +204,8 @@ const Projects = () => {
         <Container>
           <Row className="align-items-center h-100">
             <Col lg={8} className="mx-auto text-center text-white">
-              <h1 className="display-4 fw-bold mb-4">Our Projects</h1>
-              <p className="lead">
+              <h1 className="display-4 fw-bold mb-4 text-white">Our Projects</h1>
+              <p className="lead text-white">
                 Explore our portfolio of completed renovation, repair, and construction projects. 
                 See the quality and craftsmanship that sets us apart.
               </p>
@@ -181,19 +220,19 @@ const Projects = () => {
           <Row className="text-center mb-5">
             <Col lg={3} md={6} className="mb-3">
               <div className="stat-card">
-                <h3 className="display-4 fw-bold text-dark">150+</h3>
+                <CounterNumber end={150} suffix="+" />
                 <p className="text-muted">Projects Completed</p>
               </div>
             </Col>
             <Col lg={3} md={6} className="mb-3">
               <div className="stat-card">
-                <h3 className="display-4 fw-bold text-dark">100%</h3>
+                <CounterNumber end={100} suffix="%" />
                 <p className="text-muted">Client Satisfaction</p>
               </div>
             </Col>
             <Col lg={3} md={6} className="mb-3">
               <div className="stat-card">
-                <h3 className="display-4 fw-bold text-dark">8+</h3>
+                <CounterNumber end={8} suffix="+" />
                 <p className="text-muted">Years Experience</p>
               </div>
             </Col>
@@ -213,9 +252,6 @@ const Projects = () => {
           <Row>
             <Col lg={12} className="text-center mb-5">
               <h2 className="section-title">Featured Projects</h2>
-              <p className="section-subtitle">
-                Browse our recent work and see the transformation we can achieve
-              </p>
             </Col>
           </Row>
 
@@ -248,16 +284,6 @@ const Projects = () => {
                       src={project.image} 
                       style={{height: '250px', objectFit: 'cover'}}
                     />
-                    <div className="project-overlay">
-                      <Button 
-                        variant="light" 
-                        size="sm"
-                        onClick={() => handleShowProject(project)}
-                      >
-                        <i className="bi bi-eye me-2"></i>
-                        View Details
-                      </Button>
-                    </div>
                     <Badge 
                       bg="success" 
                       className="position-absolute top-0 start-0 m-3"
@@ -268,30 +294,6 @@ const Projects = () => {
                   <Card.Body className="d-flex flex-column">
                     <h5 className="project-title">{project.title}</h5>
                     <p className="project-description text-muted">{project.description}</p>
-                    
-                    <div className="project-meta mb-3">
-                      <small className="text-muted">
-                        <i className="bi bi-geo-alt me-1"></i>
-                        {project.location}
-                      </small>
-                      <br />
-                      <small className="text-muted">
-                        <i className="bi bi-calendar me-1"></i>
-                        Completed {project.completion}
-                      </small>
-                    </div>
-
-                    <div className="mt-auto">
-                      <div className="d-flex justify-content-end align-items-center">
-                        <Button 
-                          variant="outline-primary"
-                          size="sm"
-                          onClick={() => handleShowProject(project)}
-                        >
-                          Learn More
-                        </Button>
-                      </div>
-                    </div>
                   </Card.Body>
                 </Card>
               </Col>
@@ -299,91 +301,6 @@ const Projects = () => {
           </Row>
         </Container>
       </section>
-
-      {/* Project Modal */}
-      <Modal show={showModal} onHide={handleCloseModal} size="lg" centered>
-        {selectedProject && (
-          <>
-            <Modal.Header closeButton>
-              <Modal.Title>{selectedProject.title}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Row>
-                <Col md={6}>
-                  <img 
-                    src={selectedProject.gallery[0]} 
-                    alt={selectedProject.title}
-                    className="img-fluid rounded mb-3"
-                  />
-                  <div className="project-gallery d-flex gap-2">
-                    {selectedProject.gallery.slice(1).map((img, index) => (
-                      <img 
-                        key={index}
-                        src={img} 
-                        alt={`${selectedProject.title} ${index + 2}`}
-                        className="img-thumbnail"
-                        style={{width: '80px', height: '60px', objectFit: 'cover'}}
-                      />
-                    ))}
-                  </div>
-                </Col>
-                <Col md={6}>
-                  <h6 className="text-dark mb-3">Project Details</h6>
-                  <ul className="list-unstyled">
-                    <li className="mb-2">
-                      <strong>Client:</strong> {selectedProject.client}
-                    </li>
-                    <li className="mb-2">
-                      <strong>Location:</strong> {selectedProject.location}
-                    </li>
-                    <li className="mb-2">
-                      <strong>Duration:</strong> {selectedProject.duration}
-                    </li>
-                    <li className="mb-2">
-                      <strong>Completion:</strong> {selectedProject.completion}
-                    </li>
-                  </ul>
-
-                  <h6 className="text-dark mb-2">Services Provided</h6>
-                  <div className="mb-3">
-                    {selectedProject.services.map((service, index) => (
-                      <Badge key={index} bg="light" text="dark" className="me-2 mb-1">
-                        {service}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  <h6 className="text-dark mb-2">Challenge</h6>
-                  <p className="small">{selectedProject.challenges}</p>
-
-                  <h6 className="text-dark mb-2">Our Solution</h6>
-                  <p className="small">{selectedProject.solution}</p>
-                </Col>
-              </Row>
-              
-              <hr />
-              
-              <div className="text-center">
-                <h6 className="text-dark mb-2">Client Testimonial</h6>
-                <blockquote className="blockquote">
-                  <p className="mb-0">"{selectedProject.testimonial}"</p>
-                  <footer className="blockquote-footer mt-2">
-                    {selectedProject.client}
-                  </footer>
-                </blockquote>
-              </div>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleCloseModal}>
-                Close
-              </Button>
-              <Link to="/contact" className="btn btn-primary">
-                Start Your Project
-              </Link>
-            </Modal.Footer>
-          </>
-        )}
-      </Modal>
 
       {/* CTA Section */}
       <section className="section-padding bg-light-green">

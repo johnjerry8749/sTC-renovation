@@ -94,8 +94,8 @@ const Contact = () => {
         <Container>
           <Row className="align-items-center h-100">
             <Col lg={8} className="mx-auto text-center text-white">
-              <h1 className="display-4 fw-bold mb-4">Contact Us</h1>
-              <p className="lead">
+              <h1 className="display-4 fw-bold mb-4 text-white">Contact Us</h1>
+              <p className="lead text-white">
                 Ready to transform your space? Get in touch for a free consultation 
                 and detailed quote tailored to your needs.
               </p>
@@ -124,8 +124,8 @@ const Contact = () => {
                   </div>
                   <h5>Call Us</h5>
                   <p className="text-muted mb-3">Speak directly with our team</p>
-                  <a href="tel:+15551234567" className="btn btn-outline-success">
-                    (555) 123-4567
+                  <a href="tel:+5488893365" className="btn btn-outline-success">
+                    054 888 93365
                   </a>
                 </Card.Body>
               </Card>
@@ -138,7 +138,7 @@ const Contact = () => {
                   </div>
                   <h5>WhatsApp</h5>
                   <p className="text-muted mb-3">Quick messaging and photos</p>
-                  <a href="https://wa.me/15551234567" className="btn btn-outline-success">
+                  <a href="https://wa.me/5488893365" className="btn btn-outline-success">
                     Message Us
                   </a>
                 </Card.Body>
@@ -152,7 +152,7 @@ const Contact = () => {
                   </div>
                   <h5>Email Us</h5>
                   <p className="text-muted mb-3">Detailed project discussions</p>
-                  <a href="mailto:info@renovationcompany.com" className="btn btn-outline-success">
+                  <a href="mailto:info@stclimited.com" className="btn btn-outline-success">
                     Send Email
                   </a>
                 </Card.Body>
@@ -238,7 +238,7 @@ const Contact = () => {
                             name="phone"
                             value={formData.phone}
                             onChange={handleInputChange}
-                            placeholder="(555) 123-4567"
+                            placeholder="054 888 93365"
                             required
                           />
                         </Form.Group>
@@ -558,11 +558,11 @@ const Contact = () => {
                 how we can bring your renovation dreams to life.
               </p>
               <div className="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="tel:+15551234567" className="btn btn-light btn-lg">
+                <a href="tel:+5488893365" className="btn btn-light btn-lg">
                   <i className="bi bi-telephone me-2"></i>
                   Call Now
                 </a>
-                <a href="https://wa.me/15551234567" className="btn btn-outline-light btn-lg">
+                <a href="https://wa.me/5488893365" className="btn btn-outline-light btn-lg">
                   <i className="bi bi-whatsapp me-2"></i>
                   WhatsApp
                 </a>
