@@ -4,18 +4,18 @@ const FloatingButtons = () => {
   return (
     <div className="floating-buttons">
       <a 
-        href="https://wa.me/5488893365" 
+        href="https://wa.me/905488893365" 
         className="floating-btn whatsapp-btn" 
-        title="WhatsApp"
+        title="WhatsApp +905488893365"
         target="_blank"
         rel="noopener noreferrer"
       >
         <i className="bi bi-whatsapp"></i>
       </a>
       <a 
-        href="tel:+5488893365" 
+        href="tel:+905488893365" 
         className="floating-btn phone-btn" 
-        title="Call Now"
+        title="Call +905488893365"
       >
         <i className="bi bi-telephone-fill"></i>
       </a>
