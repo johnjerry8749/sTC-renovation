@@ -18,9 +18,7 @@ export default defineConfig({
           // React Router in its own chunk
           router: ['react-router-dom'],
           // Bootstrap and React Bootstrap in their own chunk
-          bootstrap: ['react-bootstrap', 'bootstrap'],
-          // Other vendor libraries
-          vendor: ['react-intersection-observer']
+          bootstrap: ['react-bootstrap', 'bootstrap']
         }
       }
     }
