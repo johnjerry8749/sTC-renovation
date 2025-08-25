@@ -124,8 +124,8 @@ const Contact = () => {
                   </div>
                   <h5>Call Us</h5>
                   <p className="text-muted mb-3">Speak directly with our team</p>
-                  <a href="tel:+5488893365" className="btn btn-outline-success">
-                    054 888 93365
+                  <a href="tel:+905488893365" className="btn btn-outline-success">
+                    +905488893365
                   </a>
                 </Card.Body>
               </Card>
@@ -138,7 +138,7 @@ const Contact = () => {
                   </div>
                   <h5>WhatsApp</h5>
                   <p className="text-muted mb-3">Quick messaging and photos</p>
-                  <a href="https://wa.me/5488893365" className="btn btn-outline-success">
+                  <a href="https://wa.me/905488893365" className="btn btn-outline-success">
                     Message Us
                   </a>
                 </Card.Body>
@@ -238,7 +238,7 @@ const Contact = () => {
                             name="phone"
                             value={formData.phone}
                             onChange={handleInputChange}
-                            placeholder="054 888 93365"
+                            placeholder="+905488893365"
                             required
                           />
                         </Form.Group>

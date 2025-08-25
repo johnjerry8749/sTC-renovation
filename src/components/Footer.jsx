@@ -64,11 +64,11 @@ const Footer = () => {
               </div>
               <div className="mb-2">
                 <i className="bi bi-telephone me-2"></i>
-                <a href="tel:+5488893365">054 888 93365</a>
+                <a href="tel:+905488893365">+905488893365</a>
               </div>
               <div className="mb-2">
                 <i className="bi bi-whatsapp me-2"></i>
-                <a href="https://wa.me/5488893365">WhatsApp Chat</a>
+                <a href="https://wa.me/905488893365">WhatsApp Chat</a>
               </div>
               <div className="mb-2">
                 <i className="bi bi-geo-alt me-2"></i>

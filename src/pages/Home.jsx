@@ -524,11 +524,11 @@ const Home = () => {
                 </Link>
                 <p className="mt-3 text-muted">
                   <i className="bi bi-whatsapp me-2"></i>
-                  WhatsApp: +971 05488893365
+                  WhatsApp: +905488893365
                 </p>
                 <p className="text-muted">
                   <i className="bi bi-telephone me-2"></i>
-                  Call Us: +971 05488893365
+                  Call Us: +905488893365
                 </p>
               </div>
             </Col>
