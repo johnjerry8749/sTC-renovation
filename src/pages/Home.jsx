@@ -518,18 +518,21 @@ const Home = () => {
             </Col>
             <Col lg={6} className="text-center">
               <div className="contact-preview">
-                <Link to="/contact" className="btn btn-primary btn-lg">
+                <Link to="/contact" className="btn btn-primary btn-lg mb-3">
                   <i className="bi bi-envelope me-2"></i>
                   Get In Touch
                 </Link>
-                <p className="mt-3 text-muted">
-                  <i className="bi bi-whatsapp me-2"></i>
-                  WhatsApp: +905488893365
-                </p>
-                <p className="text-muted">
-                  <i className="bi bi-telephone me-2"></i>
-                  Call Us: +905488893365
-                </p>
+                <div className="contact-buttons d-flex gap-2 justify-content-center">
+                  <a href="https://wa.me/905488893365" className="btn btn-success" target="_blank" rel="noopener noreferrer">
+                    <i className="bi bi-whatsapp me-2"></i>
+                    WhatsApp
+                  </a>
+                  <a href="tel:+905488893365" className="btn btn-outline-success">
+                    <i className="bi bi-telephone me-2"></i>
+                    Call Us
+                  </a>
+                </div>
+                <p className="mt-2 text-muted small">+905488893365</p>
               </div>
             </Col>
           </Row>
